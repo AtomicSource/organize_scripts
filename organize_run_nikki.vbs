@@ -8,7 +8,7 @@
 
 Dim WinScriptHost
 Set WinScriptHost = CreateObject("WScript.Shell")
-WinScriptHost.Run Chr(34) & "E:\Portable Programs\organizer_scripts\organize_run_nikki.bat" & Chr(34), 0
+WinScriptHost.Run Chr(34) & "E:\Portable Programs\organize_scripts\organize_run_nikki.bat" & Chr(34), 0
 Set WinScriptHost = Nothing
 
 ' NB: Chr(34) is a way of escaping the quote (") symbol in VBScript

@@ -1,0 +1,46 @@
+# organize configuration file
+# https://organize.readthedocs.io
+# FOR FOLDER LOCATIONS either:
+#  - Edit folder path to have FORWARD slashes: /  (Backslashes need to be escaped: \\ )
+#  - Use single quotes (NB: this can be combined with above)
+
+rules:
+  - name: "Backup Alison's Infinity Nikki photos!"
+    subfolders: true
+    locations:
+      - path: 'E:\SteamLibrary\steamapps\common\Infinity Nikki\InfinityNikki\X6Game\Saved\GamePlayPhotos\401481597\'
+        exclude_dirs: ["DIY", "Temp"]
+    filters:
+      - extension: &jpeg
+          - jpg
+          - jpeg
+    actions:
+      - copy: 
+          dest: 'D:\Pictures\Nikki Alison\{relative_path}' # DO NOT put final slash on this
+          on_conflict: skip
+#      - write:
+#          outfile: 'D:\Pictures\Nikki Alison\z_backup_log.log'
+#          text: "{now()}: new file {relative_path}"
+    tags: 
+      - nikki
+
+  - name: "Backup Infinity Nikki Screenshot folder"
+    subfolders: true
+    locations:
+      - path: 'E:/SteamLibrary/steamapps/common/Infinity Nikki/InfinityNikki/X6Game/ScreenShot/'
+    filters: 
+      - extension: *jpeg
+    actions:
+      - copy: 
+          dest: 'D:/Pictures/Nikki Screenshot backup/'
+          on_conflict: skip
+    tags: 
+      - nikki
+
+  - name: "Log: Nikki rules ran"
+    actions:
+      - write:
+          outfile: 'D:\Pictures\Nikki Alison\z_backup_log.log'
+          text: "{now()}: organize run config_nikki.yaml"
+    tags:
+      - nikki
